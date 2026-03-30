@@ -100,7 +100,7 @@ body {
     margin-top: 5px;
 }
 
-/* --- SECCIÓN DE CONTROLES (Buscador/Banner) --- */
+     font-size: 3.2rem; /* Título principal más grande y visible */
 .controls-section {
     padding: 20px;
     max-width: 1200px;
@@ -110,7 +110,7 @@ body {
 .search-container input {
     width: 100%;
     padding: 15px;
-    border-radius: 30px;
+     font-size: 1.6rem; /* Subtítulo más grande y notorio */
     border: 2px solid #ddd;
     font-size: 1rem;
     transition: border-color 0.3s;
