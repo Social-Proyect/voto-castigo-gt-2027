@@ -93,7 +93,8 @@
                     grid.innerHTML = '<div class="error">Error al conectar con la base de datos.</div>';
                     return;
                 }
-                listado = data.filter(d => d.distrito && d.distrito.trim().toLowerCase() === 'listado nacional');
+                // Filtrar exactamente por 'Lista Nacional' (con mayúscula y sin 'do')
+                listado = data.filter(d => d.distrito && d.distrito.trim() === 'Lista Nacional');
                 renderListado(listado);
             });
 
