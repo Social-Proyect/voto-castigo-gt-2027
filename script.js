@@ -161,3 +161,4 @@ async function obtenerTotalVotos() {
     document.getElementById('total-votos-count').innerText = total.toLocaleString('es-GT');
 }
 }
+}
