@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Se Reeligirán? | Termómetro de Voto de Castigo 2027 🇬🇹</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script>
+        // --- CONFIGURACIÓN DE SUPABASE ---
+        // SUSTITUYE ESTOS VALORES POR LOS DE TU PROYECTO
+        window.SUPABASE_URL = 'TU_URL_SUPABASE'; // Ejemplo: https://xyz.supabase.co
+        window.SUPABASE_ANON_KEY = 'TU_ANON_KEY_SUPABASE'; // Cadena larga de texto
+    </script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="logo">¿Se Reeligirán? <span class="year">2027</span></h1>
+            <p class="tagline">La gasolina sube, tu reelección baja. Auditoría Ciudadana 🇬🇹</p>
+        </div>
+    </header>
+
+    <section class="controls-section">
+        <div class="search-container">
+            <input type="text" id="buscador" placeholder="🔍 Busca por Diputado o Departamento (ej. 'Xela', 'Samuel')...">
+        </div>
+        <div class="total-votos-banner">
+            <p>Ya somos <span id="total-votos-count">...</span> guatemaltecos avisando que no olvidaremos el combustible en 2027.</p>
+        </div>
+    </section>
+
+    <main class="grid-container" id="grid-diputados">
+        <div class="loading-spinner">Cargando la X Legislatura...</div>
+    </main>
+
+    <footer class="main-footer">
+        <p>Datos basados en el listado oficial de la X Legislatura (2024-2028). Proyecto de Fiscalización Ciudadana.</p>
+        <p>Tu privacidad es importante. El voto se valida por IP, no pedimos datos personales.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

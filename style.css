@@ -1,0 +1,234 @@
+/* --- VARIABLES DE DISEÑO (Mobile First) --- */
+:root {
+    --primary-blue: #003366; /* Azul formal */
+    --accent-blue: #0056b3;
+    --danger-red: #d9534f;   /* Rojo de advertencia */
+    --danger-dark: #b52b27;
+    --text-dark: #333333;
+    --text-light: #777777;
+    --bg-gray: #f4f4f9;
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --border-radius: 12px;
+}
+
+/* --- RESET BÁSICO --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-gray);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* --- HEADER --- */
+.main-header {
+    background-color: white;
+    padding: 20px;
+    border-bottom: 3px solid var(--primary-blue);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+.logo {
+    color: var(--primary-blue);
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.year {
+    color: var(--danger-red);
+}
+
+.tagline {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* --- SECCIÓN DE CONTROLES (Buscador/Banner) --- */
+.controls-section {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    border: 2px solid #ddd;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+.total-votos-banner {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+#total-votos-count {
+    color: #ffc107; /* Amarillo para resaltar */
+    font-size: 1.1rem;
+}
+
+/* --- GRID DE DIPUTADOS (Diseño Responsivo) --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Mínimo 280px por tarjeta */
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 400px;
+}
+
+.loading-spinner {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    color: var(--text-light);
+}
+
+/* --- TARJETA DEL DIPUTADO (Card) --- */
+.diputado-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    border-top: 5px solid var(--primary-blue);
+    transition: transform 0.2s, border-color 0.3s;
+    position: relative;
+}
+
+/* Efecto al pasar el mouse */
+.diputado-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Estilo para los más castigados */
+.diputado-card.alto-riesgo {
+    border-color: var(--danger-red);
+}
+
+/* Badge de Estatus */
+.status-badge {
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.status-badge.red {
+    background-color: #ffe6e6;
+    color: var(--danger-red);
+}
+
+/* Detalles del Diputado */
+.card-details {
+    margin-top: 25px; /* Espacio para el badge */
+}
+
+.nombre {
+    font-size: 1.2rem;
+    color: var(--primary-blue);
+    margin-bottom: 2px;
+}
+
+.partido {
+    font-weight: bold;
+    color: var(--accent-blue);
+    font-size: 0.9rem;
+}
+
+.distrito {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+/* Contador de Votos */
+.votos-container {
+    background-color: var(--bg-gray);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.votos-count {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.votos-label {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    display: block;
+}
+
+/* Botón de Castigo */
+.btn-castigo {
+    background-color: var(--danger-red);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.btn-castigo:hover {
+    background-color: var(--danger-dark);
+}
+
+.btn-castigo:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* --- FOOTER --- */
+.main-footer {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+    background-color: white;
+    border-top: 1px solid #ddd;
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+/* --- AJUSTES PARA PANTALLAS GRANDES --- */
+@media (min-width: 768px) {
+    .logo {
+        font-size: 2.2rem;
+    }
+    
+    .grid-container {
+        padding: 30px;
+    }
+}
