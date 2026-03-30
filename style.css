@@ -1,3 +1,39 @@
+/* --- TARJETAS PRINCIPALES VERTICALES EN HOME --- */
+.vertical-main-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    margin: 40px auto 60px auto;
+    max-width: 400px;
+}
+
+.main-card {
+    width: 100%;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    border-left: 8px solid var(--primary-blue);
+    padding: 32px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.2s;
+}
+.main-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    border-color: var(--danger-red);
+}
+.main-card h2 {
+    margin-bottom: 10px;
+    color: var(--primary-blue);
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+.main-card p {
+    color: var(--text-light);
+    font-size: 1rem;
+}
 /* --- SECCIONES DE TARJETAS --- */
 .tarjetas-section {
     margin-bottom: 40px;
