@@ -1,3 +1,22 @@
+/* Botón volver a la página principal */
+.btn-volver {
+    display: inline-block;
+    margin: 18px auto 18px auto;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(90deg, #1976d2 60%, #1565c0 100%);
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 2px 8px #0001;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+.btn-volver:hover {
+    background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
+    transform: scale(1.04);
+}
 /* --- TARJETAS PRINCIPALES VERTICALES EN HOME --- */
 .vertical-main-cards {
     display: flex;
