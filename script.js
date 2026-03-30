@@ -37,19 +37,17 @@ async function obtenerDiputados() {
     }
 
     listaDiputadosCompleta = data; // Guardar para la búsqueda local
-    renderizarTarjetas(data);
-        const gridPartidos = document.getElementById('grid-partidos');
-        const gridListadoNacional = document.getElementById('grid-listado-nacional');
-        const gridDistritales = document.getElementById('grid-distritales');
-
-        // Seccionar usando el campo distrito: solo Listado Nacional y Distritales
-        const listadoNacional = data.filter(d => d.distrito && d.distrito.trim().toLowerCase() === 'listado nacional');
-        const distritales = data.filter(d => !d.distrito || d.distrito.trim().toLowerCase() !== 'listado nacional');
-
-        // Opcional: dejar la sección de partidos vacía
-        renderizarTarjetas([], gridPartidos);
-        renderizarTarjetas(listadoNacional, gridListadoNacional);
-        renderizarTarjetas(distritales, gridDistritales);
+    // Seccionar usando el campo distrito: solo Listado Nacional y Distritales
+    const gridPartidos = document.getElementById('grid-partidos');
+    const gridListadoNacional = document.getElementById('grid-listado-nacional');
+    const gridDistritales = document.getElementById('grid-distritales');
+    const listadoNacional = data.filter(d => d.distrito && d.distrito.trim().toLowerCase() === 'listado nacional');
+    const distritales = data.filter(d => !d.distrito || d.distrito.trim().toLowerCase() !== 'listado nacional');
+    // Opcional: dejar la sección de partidos vacía
+    renderizarTarjetas([], gridPartidos);
+    renderizarTarjetas(listadoNacional, gridListadoNacional);
+    renderizarTarjetas(distritales, gridDistritales);
+}
 
 // --- 2. MOSTRAR TARJETAS EN EL GRID ---
 function renderizarTarjetas(diputados, grid) {
