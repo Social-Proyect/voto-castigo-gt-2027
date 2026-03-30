@@ -32,6 +32,46 @@
     window.SUPABASE_ANON_KEY = 'sb_publishable_WQGmuNXfqjdk7o9heE1hfA_N_-uJ6IS';
     const { createClient } = supabase;
     const supabaseClient = createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+    // Hacer disponible la función procesarVoto en el scope global
+    window.procesarVoto = async function(idDiputado) {
+        const btn = document.getElementById(`btn-${idDiputado}`);
+        btn.disabled = true;
+        btn.innerText = "Procesando...";
+        try {
+            const ipResponse = await fetch('https://api.ipify.org?format=json');
+            if (!ipResponse.ok) throw new Error("No se pudo obtener la IP.");
+            const ipData = await ipResponse.json();
+            const userIp = ipData.ip;
+            const { data: resultado, error } = await supabaseClient
+                .rpc('incrementar_voto_castigo_seguro', {
+                    target_id: idDiputado,
+                    user_ip: userIp
+                });
+            if (error) throw error;
+            if (resultado === 'ya_votaste') {
+                alert("⚠️ La democracia se protege con honestidad. Tu dirección IP ya registra un voto de castigo para este diputado.");
+                btn.innerText = "Ya votaste por él";
+            } else {
+                alert("✅ Tu voto de castigo ha sido registrado. Este diputado sabrá que su reelección en 2027 está en juego.");
+                btn.innerText = "¡Voto Registrado!";
+                // Consultar el valor actualizado desde la base de datos
+                const { data: diputadoActualizado, error: errorDip } = await supabaseClient
+                    .from('diputados')
+                    .select('votos_castigo')
+                    .eq('id', idDiputado)
+                    .single();
+                if (!errorDip && diputadoActualizado) {
+                    const votosSpan = document.getElementById(`votos-${idDiputado}`);
+                    votosSpan.innerText = diputadoActualizado.votos_castigo;
+                }
+            }
+        } catch (err) {
+            console.error("Error en el proceso de voto:", err);
+            alert("Hubo un problema al registrar tu voto. Por favor intenta de nuevo.");
+            btn.disabled = false;
+            btn.innerText = "🗳️ Emitir Voto de Castigo 2027";
+        }
+    }
     </script>
     <!-- <script src="script.js"></script> -->
     <script>
