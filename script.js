@@ -143,9 +143,7 @@ async function procesarVoto(idDiputado) {
 
     try {
         // A. Obtener IP pública del usuario (Protección Anti-Fraude)
-        // Usamos ipify porque GitHub Pages no ve la IP del cliente
         const ipResponse = await fetch('https://api.ipify.org?format=json');
-        
         if (!ipResponse.ok) throw new Error("No se pudo obtener la IP.");
         const ipData = await ipResponse.json();
         const userIp = ipData.ip;
@@ -165,9 +163,16 @@ async function procesarVoto(idDiputado) {
         } else {
             alert("✅ Tu voto de castigo ha sido registrado. Este diputado sabrá que su reelección en 2027 está en juego.");
             btn.innerText = "¡Voto Registrado!";
-            // Actualizar contador localmente para feed-back visual rápido
-            const votosSpan = document.getElementById(`votos-${idDiputado}`);
-            votosSpan.innerText = parseInt(votosSpan.innerText) + 1;
+            // Consultar el valor actualizado desde la base de datos
+            const { data: diputadoActualizado, error: errorDip } = await supabaseClient
+                .from('diputados')
+                .select('votos_castigo')
+                .eq('id', idDiputado)
+                .single();
+            if (!errorDip && diputadoActualizado) {
+                const votosSpan = document.getElementById(`votos-${idDiputado}`);
+                votosSpan.innerText = diputadoActualizado.votos_castigo;
+            }
             obtenerTotalVotos(); // Actualizar banner total
         }
 
