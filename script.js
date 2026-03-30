@@ -1,4 +1,6 @@
 // --- INICIALIZACIÓN DE SUPABASE ---
+window.SUPABASE_URL = 'https://fcevakmwpcujvaermkzo.supabase.co'; 
+window.SUPABASE_ANON_KEY = 'sb_publishable_WQGmuNXfqjdk7o9heE1hfA_N_-uJ6IS';
 const { createClient } = supabase;
 const supabaseClient = createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
 
