@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Distritales | Voto de Castigo 2027</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <header class="main-header">
@@ -25,11 +26,17 @@
         <p>Datos basados en el listado oficial de la X Legislatura (2024-2028). Proyecto de Fiscalización Ciudadana.</p>
         <p>Tu privacidad es importante. El voto se valida por IP, no pedimos datos personales.</p>
     </footer>
-    <script src="script.js"></script>
+    <script>
+    // Inicialización de Supabase para esta página
+    window.SUPABASE_URL = 'https://fcevakmwpcujvaermkzo.supabase.co';
+    window.SUPABASE_ANON_KEY = 'sb_publishable_WQGmuNXfqjdk7o9heE1hfA_N_-uJ6IS';
+    const { createClient } = supabase;
+    const supabaseClient = createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+    </script>
+    <!-- <script src="script.js"></script> -->
     <script>
     // Mostrar solo diputados distritales (distrito !== 'Listado Nacional' y !== 'Partido')
     document.addEventListener('DOMContentLoaded', function() {
-        if (typeof supabaseClient === 'undefined') return;
         const grid = document.getElementById('grid-distritales');
         grid.innerHTML = '<div class="loading-spinner">Cargando diputados distritales...';
         supabaseClient
