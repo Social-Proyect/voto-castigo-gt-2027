@@ -18,7 +18,6 @@ async function inicializar() {
     await obtenerDiputados();
     await obtenerTotalVotos();
     inicializarBuscador();
-}
 
 // --- 1. OBTENER DATOS DE SUPABASE (Real-time read) ---
 async function obtenerDiputados() {
