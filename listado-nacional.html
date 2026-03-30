@@ -17,6 +17,9 @@
     <main>
         <section class="tarjetas-section">
             <h2 class="tarjetas-title">Listado Nacional</h2>
+            <div class="search-container">
+                <input type="text" id="filtroListadoNacional" placeholder="🔍 Filtra por nombre o partido...">
+            </div>
             <div class="grid-container" id="grid-listado-nacional">
                 <div class="loading-spinner">Cargando listado nacional...</div>
             </div>
@@ -75,9 +78,11 @@
     </script>
     <!-- <script src="script.js"></script> -->
     <script>
-    // Mostrar solo diputados de listado nacional (distrito === 'Listado Nacional')
+    // Mostrar solo diputados de listado nacional (distrito === 'Listado Nacional') y filtrar por texto
     document.addEventListener('DOMContentLoaded', function() {
         const grid = document.getElementById('grid-listado-nacional');
+        const filtro = document.getElementById('filtroListadoNacional');
+        let listado = [];
         grid.innerHTML = '<div class="loading-spinner">Cargando listado nacional...';
         supabaseClient
             .from('diputados')
@@ -88,35 +93,48 @@
                     grid.innerHTML = '<div class="error">Error al conectar con la base de datos.</div>';
                     return;
                 }
-                const listado = data.filter(d => d.distrito && d.distrito.trim().toLowerCase() === 'listado nacional');
-                if (listado.length === 0) {
-                    grid.innerHTML = '<div class="loading-spinner">No se encontraron diputados de listado nacional.</div>';
-                    return;
-                }
-                grid.innerHTML = '';
-                listado.forEach(d => {
-                    const riesgoClase = d.votos_castigo > 100 ? 'alto-riesgo' : '';
-                    const badgeHTML = d.votos_castigo > 100 ? '<div class="status-badge red">Reelección en Riesgo</div>' : '';
-                    const card = `
-                        <div class="diputado-card ${riesgoClase}" data-id="${d.id}">
-                            ${badgeHTML}
-                            <div class="card-details">
-                                <h3 class="nombre">${d.nombre}</h3>
-                                <p class="partido">${d.partido}</p>
-                                <p class="distrito">${d.distrito}</p>
-                            </div>
-                            <div class="votos-container">
-                                <span class="votos-count" id="votos-${d.id}">${d.votos_castigo}</span>
-                                <span class="votos-label">Guatemaltecos NO votarán por él</span>
-                            </div>
-                            <button onclick="procesarVoto(${d.id})" class="btn-castigo" id="btn-${d.id}">
-                                🗳️ Emitir Voto de Castigo 2027
-                            </button>
-                        </div>
-                    `;
-                    grid.innerHTML += card;
-                });
+                listado = data.filter(d => d.distrito && d.distrito.trim().toLowerCase() === 'listado nacional');
+                renderListado(listado);
             });
+
+        filtro.addEventListener('input', function() {
+            const texto = filtro.value.trim().toLowerCase();
+            const filtrados = listado.filter(d =>
+                d.nombre.toLowerCase().includes(texto) ||
+                d.partido.toLowerCase().includes(texto)
+            );
+            renderListado(filtrados);
+        });
+
+        function renderListado(lista) {
+            if (lista.length === 0) {
+                grid.innerHTML = '<div class="loading-spinner">No se encontraron diputados de listado nacional.</div>';
+                return;
+            }
+            grid.innerHTML = '';
+            lista.forEach(d => {
+                const riesgoClase = d.votos_castigo > 100 ? 'alto-riesgo' : '';
+                const badgeHTML = d.votos_castigo > 100 ? '<div class="status-badge red">Reelección en Riesgo</div>' : '';
+                const card = `
+                    <div class="diputado-card ${riesgoClase}" data-id="${d.id}">
+                        ${badgeHTML}
+                        <div class="card-details">
+                            <h3 class="nombre">${d.nombre}</h3>
+                            <p class="partido">${d.partido}</p>
+                            <p class="distrito">${d.distrito}</p>
+                        </div>
+                        <div class="votos-container">
+                            <span class="votos-count" id="votos-${d.id}">${d.votos_castigo}</span>
+                            <span class="votos-label">Guatemaltecos NO votarán por él</span>
+                        </div>
+                        <button onclick="procesarVoto(${d.id})" class="btn-castigo" id="btn-${d.id}">
+                            🗳️ Emitir Voto de Castigo 2027
+                        </button>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
     });
     </script>
 </body>

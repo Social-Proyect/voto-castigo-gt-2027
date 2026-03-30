@@ -88,6 +88,7 @@ function renderizarTarjetas(diputados, grid) {
 // --- 3. LÓGICA DEL BUSCADOR EN TIEMPO REAL (oninput) ---
 function inicializarBuscador() {
     const inputBuscador = document.getElementById('buscador');
+    if (!inputBuscador) return; // No hacer nada si no existe el textbox
     inputBuscador.addEventListener('input', (e) => {
         const busqueda = e.target.value.toLowerCase();
         // Filtrar por nombre o distrito y seccionar usando el campo distrito

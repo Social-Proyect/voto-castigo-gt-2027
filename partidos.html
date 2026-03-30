@@ -17,6 +17,9 @@
     <main>
         <section class="tarjetas-section">
             <h2 class="tarjetas-title">Partidos Políticos</h2>
+            <div class="search-container">
+                <input type="text" id="filtroPartidos" placeholder="🔍 Filtra por nombre o partido...">
+            </div>
             <div class="grid-container" id="grid-partidos">
                 <div class="loading-spinner">Cargando partidos políticos...</div>
             </div>
@@ -76,10 +79,12 @@
     </script>
     <!-- <script src="script.js"></script> -->
     <script>
-    // Mostrar solo partidos políticos (distrito === 'Partido')
+    // Mostrar solo partidos políticos (distrito === 'Partido') y filtrar por texto
     document.addEventListener('DOMContentLoaded', function() {
         const grid = document.getElementById('grid-partidos');
-        grid.innerHTML = '<div class="loading-spinner">Cargando partidos políticos...</div>';
+        const filtro = document.getElementById('filtroPartidos');
+        let partidos = [];
+        grid.innerHTML = '<div class="loading-spinner">Cargando partidos políticos...';
         supabaseClient
             .from('diputados')
             .select('*')
@@ -89,35 +94,48 @@
                     grid.innerHTML = '<div class="error">Error al conectar con la base de datos.</div>';
                     return;
                 }
-                const partidos = data.filter(d => d.distrito && d.distrito.trim().toLowerCase() === 'partido');
-                if (partidos.length === 0) {
-                    grid.innerHTML = '<div class="loading-spinner">No se encontraron partidos políticos.</div>';
-                    return;
-                }
-                grid.innerHTML = '';
-                partidos.forEach(d => {
-                    const riesgoClase = d.votos_castigo > 100 ? 'alto-riesgo' : '';
-                    const badgeHTML = d.votos_castigo > 100 ? '<div class="status-badge red">Reelección en Riesgo</div>' : '';
-                    const card = `
-                        <div class="diputado-card ${riesgoClase}" data-id="${d.id}">
-                            ${badgeHTML}
-                            <div class="card-details">
-                                <h3 class="nombre">${d.nombre}</h3>
-                                <p class="partido">${d.partido}</p>
-                                <p class="distrito">${d.distrito}</p>
-                            </div>
-                            <div class="votos-container">
-                                <span class="votos-count" id="votos-${d.id}">${d.votos_castigo}</span>
-                                <span class="votos-label">Guatemaltecos NO votarán por él</span>
-                            </div>
-                            <button onclick="procesarVoto(${d.id})" class="btn-castigo" id="btn-${d.id}">
-                                🗳️ Emitir Voto de Castigo 2027
-                            </button>
-                        </div>
-                    `;
-                    grid.innerHTML += card;
-                });
+                partidos = data.filter(d => d.distrito && d.distrito.trim().toLowerCase() === 'partido');
+                renderPartidos(partidos);
             });
+
+        filtro.addEventListener('input', function() {
+            const texto = filtro.value.trim().toLowerCase();
+            const filtrados = partidos.filter(d =>
+                d.nombre.toLowerCase().includes(texto) ||
+                d.partido.toLowerCase().includes(texto)
+            );
+            renderPartidos(filtrados);
+        });
+
+        function renderPartidos(lista) {
+            if (lista.length === 0) {
+                grid.innerHTML = '<div class="loading-spinner">No se encontraron partidos políticos.</div>';
+                return;
+            }
+            grid.innerHTML = '';
+            lista.forEach(d => {
+                const riesgoClase = d.votos_castigo > 100 ? 'alto-riesgo' : '';
+                const badgeHTML = d.votos_castigo > 100 ? '<div class="status-badge red">Reelección en Riesgo</div>' : '';
+                const card = `
+                    <div class="diputado-card ${riesgoClase}" data-id="${d.id}">
+                        ${badgeHTML}
+                        <div class="card-details">
+                            <h3 class="nombre">${d.nombre}</h3>
+                            <p class="partido">${d.partido}</p>
+                            <p class="distrito">${d.distrito}</p>
+                        </div>
+                        <div class="votos-container">
+                            <span class="votos-count" id="votos-${d.id}">${d.votos_castigo}</span>
+                            <span class="votos-label">Guatemaltecos NO votarán por él</span>
+                        </div>
+                        <button onclick="procesarVoto(${d.id})" class="btn-castigo" id="btn-${d.id}">
+                            🗳️ Emitir Voto de Castigo 2027
+                        </button>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
     });
 
     // Hacer disponible la función procesarVoto en el scope global
