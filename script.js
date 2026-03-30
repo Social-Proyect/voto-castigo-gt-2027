@@ -160,5 +160,3 @@ async function obtenerTotalVotos() {
     const total = data.reduce((sum, d) => sum + d.votos_castigo, 0);
     document.getElementById('total-votos-count').innerText = total.toLocaleString('es-GT');
 }
-}
-}
