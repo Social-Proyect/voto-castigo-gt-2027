@@ -40,12 +40,12 @@ async function obtenerDiputados() {
         const gridListadoNacional = document.getElementById('grid-listado-nacional');
         const gridDistritales = document.getElementById('grid-distritales');
 
-        // Seccionar usando el campo distrito
-        const partidos = data.filter(d => d.distrito.trim().toLowerCase() === 'partido');
-        const listadoNacional = data.filter(d => d.distrito.trim().toLowerCase() === 'listado nacional');
-        const distritales = data.filter(d => d.distrito.trim().toLowerCase() !== 'partido' && d.distrito.trim().toLowerCase() !== 'listado nacional');
+        // Seccionar usando el campo distrito: solo Listado Nacional y Distritales
+        const listadoNacional = data.filter(d => d.distrito && d.distrito.trim().toLowerCase() === 'listado nacional');
+        const distritales = data.filter(d => !d.distrito || d.distrito.trim().toLowerCase() !== 'listado nacional');
 
-        renderizarTarjetas(partidos, gridPartidos);
+        // Opcional: dejar la sección de partidos vacía
+        renderizarTarjetas([], gridPartidos);
         renderizarTarjetas(listadoNacional, gridListadoNacional);
         renderizarTarjetas(distritales, gridDistritales);
 
@@ -91,10 +91,9 @@ function inicializarBuscador() {
     inputBuscador.addEventListener('input', (e) => {
         const busqueda = e.target.value.toLowerCase();
         // Filtrar por nombre o distrito y seccionar usando el campo distrito
-        const partidos = listaDiputadosCompleta.filter(d => d.distrito.trim().toLowerCase() === 'partido' && (d.nombre.toLowerCase().includes(busqueda) || d.distrito.toLowerCase().includes(busqueda)));
-        const listadoNacional = listaDiputadosCompleta.filter(d => d.distrito.trim().toLowerCase() === 'listado nacional' && (d.nombre.toLowerCase().includes(busqueda) || d.distrito.toLowerCase().includes(busqueda)));
-        const distritales = listaDiputadosCompleta.filter(d => d.distrito.trim().toLowerCase() !== 'partido' && d.distrito.trim().toLowerCase() !== 'listado nacional' && (d.nombre.toLowerCase().includes(busqueda) || d.distrito.toLowerCase().includes(busqueda)));
-        renderizarTarjetas(partidos, document.getElementById('grid-partidos'));
+        const listadoNacional = listaDiputadosCompleta.filter(d => d.distrito && d.distrito.trim().toLowerCase() === 'listado nacional' && (d.nombre.toLowerCase().includes(busqueda) || d.distrito.toLowerCase().includes(busqueda)));
+        const distritales = listaDiputadosCompleta.filter(d => (!d.distrito || d.distrito.trim().toLowerCase() !== 'listado nacional') && (d.nombre.toLowerCase().includes(busqueda) || d.distrito.toLowerCase().includes(busqueda)));
+        renderizarTarjetas([], document.getElementById('grid-partidos'));
         renderizarTarjetas(listadoNacional, document.getElementById('grid-listado-nacional'));
         renderizarTarjetas(distritales, document.getElementById('grid-distritales'));
     });
