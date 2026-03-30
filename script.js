@@ -48,7 +48,6 @@ async function obtenerDiputados() {
         renderizarTarjetas(partidos, gridPartidos);
         renderizarTarjetas(listadoNacional, gridListadoNacional);
         renderizarTarjetas(distritales, gridDistritales);
-}
 
 // --- 2. MOSTRAR TARJETAS EN EL GRID ---
 function renderizarTarjetas(diputados, grid) {
