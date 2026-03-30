@@ -1,25 +1,33 @@
+// Unificada para mostrar siempre el número de votos actual de cada diputado
 function renderizarTarjetas(diputados) {
     const grid = document.getElementById('grid-diputados');
     grid.innerHTML = '';
 
+    if (diputados.length === 0) {
+        grid.innerHTML = `<div class="loading-spinner">No se encontraron diputados con ese criterio.</div>`;
+        return;
+    }
+
     diputados.forEach(d => {
+        // Lógica de "Alto Riesgo" (borde rojo si tiene > 100 votos)
+        const riesgoClase = d.votos_castigo > 100 ? 'alto-riesgo' : '';
+        const badgeHTML = d.votos_castigo > 100 ? `<div class="status-badge red">Reelección en Riesgo</div>` : '';
+
         // REVISAR SI YA VOTÓ LOCALMENTE
         const yaVotoLocal = localStorage.getItem(`voto_castigo_${d.id}`);
-        const riesgoClase = d.votos_castigo > 100 ? 'alto-riesgo' : '';
-        
-        // Configurar el botón según el estado
         const btnTexto = yaVotoLocal ? "✅ Ya votaste por él" : "🗳️ Emitir Voto de Castigo 2027";
         const btnDisabled = yaVotoLocal ? "disabled" : "";
 
-        grid.innerHTML += `
+        const card = `
             <div class="diputado-card ${riesgoClase}" data-id="${d.id}">
+                ${badgeHTML}
                 <div class="card-details">
                     <h3 class="nombre">${d.nombre}</h3>
                     <p class="partido">${d.partido}</p>
                     <p class="distrito">${d.distrito}</p>
                 </div>
                 <div class="votos-container">
-                    <span class="votos-count">${d.votos_castigo}</span>
+                    <span class="votos-count" id="votos-${d.id}">${d.votos_castigo}</span>
                     <span class="votos-label">Guatemaltecos NO votarán por él</span>
                 </div>
                 <button onclick="procesarVoto(${d.id})" class="btn-castigo" id="btn-${d.id}" ${btnDisabled}>
@@ -27,6 +35,7 @@ function renderizarTarjetas(diputados) {
                 </button>
             </div>
         `;
+        grid.innerHTML += card;
     });
 }
 // --- INICIALIZACIÓN DE SUPABASE ---
