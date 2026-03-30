@@ -1,3 +1,34 @@
+function renderizarTarjetas(diputados) {
+    const grid = document.getElementById('grid-diputados');
+    grid.innerHTML = '';
+
+    diputados.forEach(d => {
+        // REVISAR SI YA VOTÓ LOCALMENTE
+        const yaVotoLocal = localStorage.getItem(`voto_castigo_${d.id}`);
+        const riesgoClase = d.votos_castigo > 100 ? 'alto-riesgo' : '';
+        
+        // Configurar el botón según el estado
+        const btnTexto = yaVotoLocal ? "✅ Ya votaste por él" : "🗳️ Emitir Voto de Castigo 2027";
+        const btnDisabled = yaVotoLocal ? "disabled" : "";
+
+        grid.innerHTML += `
+            <div class="diputado-card ${riesgoClase}" data-id="${d.id}">
+                <div class="card-details">
+                    <h3 class="nombre">${d.nombre}</h3>
+                    <p class="partido">${d.partido}</p>
+                    <p class="distrito">${d.distrito}</p>
+                </div>
+                <div class="votos-container">
+                    <span class="votos-count">${d.votos_castigo}</span>
+                    <span class="votos-label">Guatemaltecos NO votarán por él</span>
+                </div>
+                <button onclick="procesarVoto(${d.id})" class="btn-castigo" id="btn-${d.id}" ${btnDisabled}>
+                    ${btnTexto}
+                </button>
+            </div>
+        `;
+    });
+}
 // --- INICIALIZACIÓN DE SUPABASE ---
 window.SUPABASE_URL = 'https://fcevakmwpcujvaermkzo.supabase.co'; 
 window.SUPABASE_ANON_KEY = 'sb_publishable_WQGmuNXfqjdk7o9heE1hfA_N_-uJ6IS';
