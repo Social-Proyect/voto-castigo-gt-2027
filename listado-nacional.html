@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado Nacional | Voto de Castigo 2027</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="logo">Listado Nacional <span class="year">2027</span></h1>
+            <p class="tagline">Vota por la lista nacional de diputados.</p>
+        </div>
+    </header>
+    <main>
+        <section class="tarjetas-section">
+            <h2 class="tarjetas-title">Listado Nacional</h2>
+            <div class="grid-container" id="grid-listado-nacional">
+                <div class="loading-spinner">Cargando listado nacional...</div>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <p>Datos basados en el listado oficial de la X Legislatura (2024-2028). Proyecto de Fiscalización Ciudadana.</p>
+        <p>Tu privacidad es importante. El voto se valida por IP, no pedimos datos personales.</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+    // Mostrar solo diputados de listado nacional (distrito === 'Listado Nacional')
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof supabaseClient === 'undefined') return;
+        const grid = document.getElementById('grid-listado-nacional');
+        grid.innerHTML = '<div class="loading-spinner">Cargando listado nacional...';
+        supabaseClient
+            .from('diputados')
+            .select('*')
+            .order('votos_castigo', { ascending: false })
+            .then(({ data, error }) => {
+                if (error) {
+                    grid.innerHTML = '<div class="error">Error al conectar con la base de datos.</div>';
+                    return;
+                }
+                const listado = data.filter(d => d.distrito && d.distrito.trim().toLowerCase() === 'listado nacional');
+                if (listado.length === 0) {
+                    grid.innerHTML = '<div class="loading-spinner">No se encontraron diputados de listado nacional.</div>';
+                    return;
+                }
+                grid.innerHTML = '';
+                listado.forEach(d => {
+                    const riesgoClase = d.votos_castigo > 100 ? 'alto-riesgo' : '';
+                    const badgeHTML = d.votos_castigo > 100 ? '<div class="status-badge red">Reelección en Riesgo</div>' : '';
+                    const card = `
+                        <div class="diputado-card ${riesgoClase}" data-id="${d.id}">
+                            ${badgeHTML}
+                            <div class="card-details">
+                                <h3 class="nombre">${d.nombre}</h3>
+                                <p class="partido">${d.partido}</p>
+                                <p class="distrito">${d.distrito}</p>
+                            </div>
+                            <div class="votos-container">
+                                <span class="votos-count" id="votos-${d.id}">${d.votos_castigo}</span>
+                                <span class="votos-label">Guatemaltecos NO votarán por él</span>
+                            </div>
+                            <button onclick="procesarVoto(${d.id})" class="btn-castigo" id="btn-${d.id}">
+                                🗳️ Emitir Voto de Castigo 2027
+                            </button>
+                        </div>
+                    `;
+                    grid.innerHTML += card;
+                });
+            });
+    });
+    </script>
+</body>
+</html>
