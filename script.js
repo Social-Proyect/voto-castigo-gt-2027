@@ -53,41 +53,39 @@ async function obtenerDiputados() {
 
 // --- 2. MOSTRAR TARJETAS EN EL GRID ---
 function renderizarTarjetas(diputados) {
-    const grid = document.getElementById('grid-diputados');
-    grid.innerHTML = ''; // Limpiar grid o loading spinner
+    function renderizarTarjetas(diputados, grid) {
+        if (!grid) return;
+        grid.innerHTML = '';
 
-    if (diputados.length === 0) {
-        grid.innerHTML = `<div class="loading-spinner">No se encontraron diputados con ese criterio.</div>`;
-        return;
-    }
+        if (!diputados || diputados.length === 0) {
+            grid.innerHTML = `<div class="loading-spinner">No se encontraron resultados en esta sección.</div>`;
+            return;
+        }
 
-    diputados.forEach(d => {
-        // Lógica de "Alto Riesgo" (borde rojo si tiene > 100 votos)
-        const riesgoClase = d.votos_castigo > 100 ? 'alto-riesgo' : '';
-        const badgeHTML = d.votos_castigo > 100 ? `<div class="status-badge red">Reelección en Riesgo</div>` : '';
+        diputados.forEach(d => {
+            // Lógica de "Alto Riesgo" (borde rojo si tiene > 100 votos)
+            const riesgoClase = d.votos_castigo > 100 ? 'alto-riesgo' : '';
+            const badgeHTML = d.votos_castigo > 100 ? `<div class="status-badge red">Reelección en Riesgo</div>` : '';
 
-        const card = `
-            <div class="diputado-card ${riesgoClase}" data-id="${d.id}">
-                ${badgeHTML}
-                
-                <div class="card-details">
-                    <h3 class="nombre">${d.nombre}</h3>
-                    <p class="partido">${d.partido}</p>
-                    <p class="distrito">${d.distrito}</p>
+            const card = `
+                <div class="diputado-card ${riesgoClase}" data-id="${d.id}">
+                    ${badgeHTML}
+                    <div class="card-details">
+                        <h3 class="nombre">${d.nombre}</h3>
+                        <p class="partido">${d.partido}</p>
+                        <p class="distrito">${d.distrito}</p>
+                    </div>
+                    <div class="votos-container">
+                        <span class="votos-count" id="votos-${d.id}">${d.votos_castigo}</span>
+                        <span class="votos-label">Guatemaltecos NO votarán por él</span>
+                    </div>
+                    <button onclick="procesarVoto(${d.id})" class="btn-castigo" id="btn-${d.id}">
+                        🗳️ Emitir Voto de Castigo 2027
+                    </button>
                 </div>
-                
-                <div class="votos-container">
-                    <span class="votos-count" id="votos-${d.id}">${d.votos_castigo}</span>
-                    <span class="votos-label">Guatemaltecos NO votarán por él</span>
-                </div>
-                
-                <button onclick="procesarVoto(${d.id})" class="btn-castigo" id="btn-${d.id}">
-                    🗳️ Emitir Voto de Castigo 2027
-                </button>
-            </div>
-        `;
-        grid.innerHTML += card;
-    });
+            `;
+            grid.innerHTML += card;
+        });
     function renderizarTarjetas(diputados, grid) {
         if (!grid) return;
         grid.innerHTML = '';
