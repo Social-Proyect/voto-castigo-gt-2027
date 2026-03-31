@@ -101,7 +101,7 @@ function inicializarBuscador() {
 }
 
 // --- 4. PROCESAR VOTO (IP + Supabase RPC) ---
-async function procesarVoto(idDiputado) {
+window.procesarVoto = async function procesarVoto(idDiputado) {
     const btn = document.getElementById(`btn-${idDiputado}`);
     btn.disabled = true; // Deshabilitar para evitar múltiples clicks
     btn.innerText = "Procesando...";
