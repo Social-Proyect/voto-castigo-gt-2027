@@ -1,3 +1,19 @@
+// Compartir link de la página con mensaje personalizado
+function compartirVotoCastigoLink() {
+    const url = window.location.href;
+    const mensaje = `¡Ya emití mi Voto de Castigo! Ingresa a este enlace para sumarte: ${url}`;
+    if (navigator.share) {
+        navigator.share({
+            title: 'Voto de Castigo',
+            text: mensaje,
+            url: url
+        });
+    } else {
+        // Fallback: copiar al portapapeles
+        navigator.clipboard.writeText(mensaje);
+        alert('¡Enlace copiado! Ahora puedes compartirlo donde quieras.');
+    }
+}
 // ...existing code...
 // --- COMPARTIR VOTO DE CASTIGO ---
 function compartirVotoCastigo() {
