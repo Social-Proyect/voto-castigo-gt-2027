@@ -140,6 +140,9 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
 }
+ 
+ /* Eliminando el background-color sólido del body para que la imagen de fondo sea visible */
+
 
 /* --- HEADER --- */
 .main-header {
