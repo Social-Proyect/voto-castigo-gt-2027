@@ -151,13 +151,14 @@ window.procesarVoto = async function procesarVoto(idDiputado) {
 
 // --- 5. OBTENER TOTAL DE VOTOS (Banner Superior) ---
 async function obtenerTotalVotos() {
+    // Contar IPs únicas desde la tabla de votos
     const { data, error } = await supabaseClient
-        .from('diputados')
-        .select('votos_castigo');
+        .from('votos_castigo') // Cambia por el nombre real de tu tabla de votos si es diferente
+        .select('user_ip', { count: 'exact', distinct: true });
 
     if (error) return;
 
-    // Sumar todos los votos_castigo usando reduce
-    const total = data.reduce((sum, d) => sum + d.votos_castigo, 0);
+    // El total será la cantidad de IPs únicas
+    const total = data.length;
     document.getElementById('total-votos-count').innerText = total.toLocaleString('es-GT');
 }
