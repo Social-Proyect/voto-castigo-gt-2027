@@ -26,6 +26,18 @@
         window.SUPABASE_URL = 'TU_URL_SUPABASE'; // Ejemplo: https://xyz.supabase.co
         window.SUPABASE_ANON_KEY = 'TU_ANON_KEY_SUPABASE'; // Cadena larga de texto
     </script>
+    <script>
+        (function() {
+            var img = new Image();
+            img.src = 'background-voto-castigo.jpg';
+            img.onload = function() {
+                console.log('Imagen de fondo cargada correctamente.');
+            };
+            img.onerror = function() {
+                console.error('Error: No se pudo cargar la imagen de fondo background-voto-castigo.jpg. Verifica el nombre, la extensión y la ubicación del archivo.');
+            };
+        })();
+    </script>
 </head>
 <body>
     <div class="contenido-principal">
