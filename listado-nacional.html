@@ -19,6 +19,9 @@
             <div class="total-votos-banner">
                 <p>Ya somos <span id="total-votos-count">...</span> guatemaltecos avisando que no olvidaremos el combustible en 2027.</p>
             </div>
+            <div class="total-votos-banner">
+                <p>Ya somos <span id="total-votos-count">...</span> guatemaltecos avisando que no olvidaremos el combustible en 2027.</p>
+            </div>
             <button onclick="window.location.href='index.html'" class="btn-volver">⏪ Volver a la página principal</button>
             <h2 class="tarjetas-title">Listado Nacional</h2>
             <div class="search-container">
@@ -80,17 +83,7 @@
         }
     }
     </script>
-    <script>
-    // Contador de IPs únicas
-    async function obtenerTotalVotos() {
-        const { count, error } = await supabaseClient
-            .from('registros_votos')
-            .select('ip_address', { count: 'exact', head: true, distinct: true });
-        if (error) return;
-        document.getElementById('total-votos-count').innerText = (count || 0).toLocaleString('es-GT');
-    }
-    document.addEventListener('DOMContentLoaded', obtenerTotalVotos);
-    </script>
+    <script src="script.js"></script>
     <script>
     // Mostrar solo diputados de listado nacional (distrito === 'Listado Nacional') y filtrar por texto
     document.addEventListener('DOMContentLoaded', function() {
