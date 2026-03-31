@@ -16,12 +16,18 @@
 }
 /* Mensaje destacado grande */
 .mensaje-destacado {
-    font-size: 3em;
+    font-size: 4em;
     font-weight: bold;
-    color: #b80000;
+    color: #fff;
+    background: linear-gradient(90deg, #b80000 60%, #ff5252 100%);
     text-align: center;
-    margin: 30px 0 20px 0;
-    line-height: 1.2;
+    margin: 40px 0 30px 0;
+    line-height: 1.15;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(184,0,0,0.18);
+    padding: 32px 12px 24px 12px;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 8px #b8000080, 0 2px 2px #0008;
 }
 /* Botón volver a la página principal */
 .btn-volver {
