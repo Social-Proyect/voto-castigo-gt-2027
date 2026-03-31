@@ -190,7 +190,11 @@ async function obtenerTotalVotos() {
         .from('registros_votos')
         .select('ip_address', { count: 'exact', head: true, distinct: true });
 
-    if (error) return;
+    console.log('[VotoCastigo] Conteo IPs únicas:', count);
+    if (error) {
+        console.error('[VotoCastigo] Error al obtener IPs únicas:', error);
+        return;
+    }
 
     // El total será la cantidad de IPs únicas
     document.getElementById('total-votos-count').innerText = (count || 0).toLocaleString('es-GT');
