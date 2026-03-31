@@ -277,7 +277,7 @@ body {
 }
 
 .votos-count {
-    font-size: 1.8rem;
+        font-size: 1.5em;
     font-weight: 800;
     color: var(--text-dark);
 }
