@@ -12,19 +12,26 @@
 }
 /* Botón compartir */
 .btn-compartir {
-    background: #1da1f2;
+    background: linear-gradient(90deg, #ff9800 0%, #ff5252 100%);
     color: #fff;
-    font-size: 1.1em;
-    padding: 12px 28px;
+    font-size: 1.25em;
+    padding: 16px 36px;
     border: none;
-    border-radius: 6px;
+    border-radius: 30px;
     cursor: pointer;
-    margin-top: 18px;
-    transition: background 0.2s;
+    margin: 22px auto 0 auto;
+    display: block;
+    box-shadow: 0 4px 18px #ff980055, 0 2px 8px #b8000022;
     font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px 8px #b8000080, 0 2px 2px #0008;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
+    
 .btn-compartir:hover {
-    background: #0d8ddb;
+    background: linear-gradient(90deg, #ff5252 0%, #ff9800 100%);
+    transform: scale(1.06) rotate(-1deg);
+    box-shadow: 0 6px 24px #ff525288, 0 2px 12px #b8000044;
 }
 /* Mensaje destacado grande */
 .mensaje-destacado {

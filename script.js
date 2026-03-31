@@ -1,4 +1,23 @@
 // ...existing code...
+// --- COMPARTIR VOTO DE CASTIGO ---
+function compartirVotoCastigo() {
+    const shareData = {
+        title: '¡Ya emití mi Voto de Castigo! 🇬🇹',
+        text: '¡Ya avisé que no reelegiré a quienes subieron el combustible! Súmate al #VotoDeCastigo2027 en votocastigo.com',
+        url: window.location.origin
+    };
+    if (navigator.share) {
+        navigator.share(shareData)
+            .then(() => {
+                alert('¡Gracias por compartir tu voto de castigo!');
+            })
+            .catch(() => {});
+    } else {
+        // Fallback: copiar al portapapeles
+        navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
+        alert('¡Texto para compartir copiado al portapapeles! Pega en tus redes sociales.');
+    }
+}
 // --- INICIALIZACIÓN DE SUPABASE ---
 window.SUPABASE_URL = 'https://fcevakmwpcujvaermkzo.supabase.co'; 
 window.SUPABASE_ANON_KEY = 'sb_publishable_WQGmuNXfqjdk7o9heE1hfA_N_-uJ6IS';
