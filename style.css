@@ -5,7 +5,7 @@ body::before {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url('/OneDrive/WEB/VotoCastigo/voto-castigo-gt-2027/background-voto-castigo.jpg') center center/cover no-repeat;
+    background: url('./background-voto-castigo.jpg') center center/cover no-repeat;
     opacity: 0.5;
     z-index: -1;
 }
