@@ -1,3 +1,14 @@
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('background-voto-castigo.jpg') center center/cover no-repeat;
+    opacity: 0.5;
+    z-index: -1;
+}
 /* Botón flotante de compartir */
 #compartir-float {
     position: fixed;
@@ -23,49 +34,8 @@
 /* Versión reducida solo para index.html */
 .mensaje-destacado-reducido {
     font-size: 1.14em;
-    display: inline-block;
-    background: transparent;
-    color: #b80000;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 0;
-    margin: 0 auto;
-    text-shadow: none;
-}
-/* Botón compartir */
-.btn-compartir {
-    background: linear-gradient(90deg, #ff9800 0%, #ff5252 100%);
-    color: #fff;
-    font-size: 1.25em;
-    padding: 16px 36px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    margin: 22px auto 0 auto;
-    display: block;
-    box-shadow: 0 4px 18px #ff980055, 0 2px 8px #b8000022;
     font-weight: bold;
     letter-spacing: 1px;
-    text-shadow: 1px 2px 8px #b8000080, 0 2px 2px #0008;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-    
-.btn-compartir:hover {
-    background: linear-gradient(90deg, #ff5252 0%, #ff9800 100%);
-    transform: scale(1.06) rotate(-1deg);
-    box-shadow: 0 6px 24px #ff525288, 0 2px 12px #b8000044;
-}
-/* Mensaje destacado grande */
-.mensaje-destacado {
-    font-size: 2.2em;
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(90deg, #b80000 60%, #ff5252 100%);
-    text-align: center;
-    margin: 40px 0 30px 0;
-    line-height: 1.15;
-    border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(184,0,0,0.18);
     padding: 32px 12px 24px 12px;
     letter-spacing: 1px;
     text-shadow: 2px 2px 8px #b8000080, 0 2px 2px #0008;
@@ -126,31 +96,6 @@
     font-size: 1rem;
 }
 /* --- SECCIONES DE TARJETAS --- */
-/* Botón flotante de WhatsApp */
-#whatsapp-share-btn {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 1000;
-    background: #25d366;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 64px;
-    height: 64px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.2rem;
-    cursor: pointer;
-    transition: box-shadow 0.2s, transform 0.2s;
-}
-#whatsapp-share-btn:hover {
-    box-shadow: 0 8px 24px rgba(0,0,0,0.28);
-    transform: scale(1.08);
-    background: #128c7e;
-}
      font-size: 1.14em; /* Aumentado el tamaño del número de votos en un 300% */
     margin-bottom: 40px;
     background: none;

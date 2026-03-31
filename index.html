@@ -6,6 +6,17 @@
     <title>¿Se Reeligirán? | Termómetro de Voto de Castigo 2027 🇬🇹</title>
     
     <link rel="stylesheet" href="style.css">
+        <style>
+            /* Fondo blanco semitransparente para el contenido principal */
+            .contenido-principal {
+                background: rgba(255,255,255,0.85);
+                border-radius: 12px;
+                padding: 24px 16px;
+                margin: 24px auto;
+                max-width: 900px;
+                box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+            }
+        </style>
     
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
@@ -17,7 +28,7 @@
     </script>
 </head>
 <body>
-
+    <div class="contenido-principal">
     <header class="main-header">
         <div class="header-content">
             <h1 class="logo">¿Se Reeligirán? <span class="year">2027</span></h1>
@@ -56,11 +67,7 @@
         <p>Datos basados en el listado oficial de la X Legislatura (2024-2028). Proyecto de Fiscalización Ciudadana.</p>
         <p>Tu privacidad es importante. El voto se valida por IP, no pedimos datos personales.</p>
     </footer>
-
-
-    <button id="compartir-float" onclick="compartirVotoCastigoLink(); return false;" title="Compartir que ya emitiste tu voto de castigo">
-        ¡Ya emití mi Voto de Castigo! Compartir
-    </button>
+    </div>
     <script src="script.js"></script>
 </body>
         <!-- Botón flotante de WhatsApp -->
