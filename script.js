@@ -185,13 +185,13 @@ function mostrarBotonCompartir() {
 // --- 5. OBTENER TOTAL DE VOTOS (Banner Superior) ---
 async function obtenerTotalVotos() {
     // Contar IPs únicas desde la tabla de votos
-    const { data, error } = await supabaseClient
+    // Obtener el conteo de IPs únicas directamente desde Supabase
+    const { count, error } = await supabaseClient
         .from('registros_votos')
-        .select('ip_address', { count: 'exact', distinct: true });
+        .select('ip_address', { count: 'exact', head: true, distinct: true });
 
     if (error) return;
 
     // El total será la cantidad de IPs únicas
-    const total = data.length;
-    document.getElementById('total-votos-count').innerText = total.toLocaleString('es-GT');
+    document.getElementById('total-votos-count').innerText = (count || 0).toLocaleString('es-GT');
 }
