@@ -184,18 +184,20 @@ function mostrarBotonCompartir() {
 
 // --- 5. OBTENER TOTAL DE VOTOS (Banner Superior) ---
 async function obtenerTotalVotos() {
-    // Contar IPs únicas desde la tabla de votos
-    // Obtener el conteo de IPs únicas directamente desde Supabase
-    const { count, error } = await supabaseClient
+    // Obtener todos los registros y contar IPs únicas en el frontend
+    const { data, error } = await supabaseClient
         .from('registros_votos')
-        .select('ip_address', { count: 'exact', head: true, distinct: true });
+        .select('ip_address');
 
-    console.log('[VotoCastigo] Conteo IPs únicas:', count);
     if (error) {
         console.error('[VotoCastigo] Error al obtener IPs únicas:', error);
         return;
     }
 
-    // El total será la cantidad de IPs únicas
-    document.getElementById('total-votos-count').innerText = (count || 0).toLocaleString('es-GT');
+    // Filtrar IPs únicas
+    const ipsUnicas = new Set(data.map(r => r.ip_address).filter(Boolean));
+    const total = ipsUnicas.size;
+
+    console.log('[VotoCastigo] Conteo IPs únicas:', total);
+    document.getElementById('total-votos-count').innerText = total.toLocaleString('es-GT');
 }
