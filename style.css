@@ -5,10 +5,10 @@ body::before {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center center/cover no-repeat;
+    background: url('./background-voto-castigo.jpg') center center/cover no-repeat;
     opacity: 0.5;
     z-index: -1;
-    border: 2px solid red; /* Borde temporal para depuración */
+    /* Borde de depuración eliminado */
 }
 /* Botón flotante de compartir */
 #compartir-float {
