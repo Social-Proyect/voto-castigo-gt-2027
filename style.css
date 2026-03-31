@@ -136,7 +136,7 @@ body::before {
 
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--bg-gray);
+    /* background-color: var(--bg-gray); */
     color: var(--text-dark);
     line-height: 1.6;
 }
