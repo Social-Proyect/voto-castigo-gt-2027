@@ -97,10 +97,15 @@
     font-size: 1rem;
 }
 /* --- SECCIONES DE TARJETAS --- */
-.tarjetas-section {
+     font-size: 1.14em; /* Aumentado el tamaño del número de votos en un 300% */
     margin-bottom: 40px;
     background: none;
 }
+     font-size: 3.6em; /* Aumentado el tamaño del número de votos en un 300% */
+     font-weight: bold;
+     color: #b80000;
+     margin-right: 6px;
+     line-height: 1.1;
 
 .tarjetas-title {
     font-size: 1.3rem;
