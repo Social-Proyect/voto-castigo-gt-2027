@@ -30,13 +30,7 @@
         <p>Datos basados en el listado oficial de la X Legislatura (2024-2028). Proyecto de Fiscalización Ciudadana.</p>
         <p>Tu privacidad es importante. El voto se valida por IP, no pedimos datos personales.</p>
     </footer>
-    <script>
-    // Inicialización de Supabase para esta página
-    window.SUPABASE_URL = 'https://fcevakmwpcujvaermkzo.supabase.co';
-    window.SUPABASE_ANON_KEY = 'sb_publishable_WQGmuNXfqjdk7o9heE1hfA_N_-uJ6IS';
-    const { createClient } = supabase;
-    const supabaseClient = createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
-    </script>
+    <!-- Inicialización de Supabase solo en script.js -->
     <script src="script.js"></script>
     <script>
     // Mostrar solo diputados distritales (distrito !== 'Listado Nacional' y !== 'Partido') y filtrar por texto
