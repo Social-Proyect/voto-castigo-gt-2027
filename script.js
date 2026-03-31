@@ -153,8 +153,8 @@ window.procesarVoto = async function procesarVoto(idDiputado) {
 async function obtenerTotalVotos() {
     // Contar IPs únicas desde la tabla de votos
     const { data, error } = await supabaseClient
-        .from('votos_castigo') // Cambia por el nombre real de tu tabla de votos si es diferente
-        .select('user_ip', { count: 'exact', distinct: true });
+        .from('registros_votos')
+        .select('ip_address', { count: 'exact', distinct: true });
 
     if (error) return;
 
