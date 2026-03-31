@@ -2,6 +2,13 @@
 .mensaje-destacado-reducido {
     font-size: 0.38em;
     display: inline-block;
+    background: linear-gradient(90deg, #b80000 60%, #ff5252 100%);
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(184,0,0,0.13);
+    padding: 8px 10px 6px 10px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 4px #b8000080, 0 1px 1px #0006;
 }
 /* Botón compartir */
 .btn-compartir {
