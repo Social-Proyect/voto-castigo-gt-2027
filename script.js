@@ -172,22 +172,7 @@ function mostrarBotonCompartir() {
     };
     container.appendChild(btn);
 }
-/* Botón compartir */
-.btn-compartir {
-    background: #1da1f2;
-    color: #fff;
-    font-size: 1.1em;
-    padding: 12px 28px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 18px;
-    transition: background 0.2s;
-    font-weight: bold;
-}
-.btn-compartir:hover {
-    background: #0d8ddb;
-}
+
 
     } catch (err) {
         console.error("Error en el proceso de voto:", err);
