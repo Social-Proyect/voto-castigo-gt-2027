@@ -139,7 +139,55 @@ window.procesarVoto = async function procesarVoto(idDiputado) {
                 votosSpan.innerText = diputadoActualizado.votos_castigo;
             }
             obtenerTotalVotos(); // Actualizar banner total
+
+            // Mostrar botón para compartir en redes sociales
+            mostrarBotonCompartir();
         }
+// Botón para compartir en redes sociales después de votar
+function mostrarBotonCompartir() {
+    // Evitar duplicados
+    if (document.getElementById('btn-compartir-voto')) return;
+    const container = document.querySelector('.tarjetas-section');
+    if (!container) return;
+    const btn = document.createElement('button');
+    btn.id = 'btn-compartir-voto';
+    btn.className = 'btn-compartir';
+    btn.innerText = 'Compartir mi voto de castigo';
+    btn.style.margin = '20px auto 0 auto';
+    btn.style.display = 'block';
+    btn.onclick = function() {
+        const url = window.location.href;
+        const mensaje = `¡Ya coloqué mi voto de castigo! Súmate a la Auditoría Ciudadana 🇬🇹 y vota tú también aquí: ${url}`;
+        if (navigator.share) {
+            navigator.share({
+                title: 'Voto de Castigo 2027',
+                text: mensaje,
+                url: url
+            });
+        } else {
+            // Fallback: copiar al portapapeles y mostrar mensaje
+            navigator.clipboard.writeText(mensaje);
+            alert('¡Mensaje copiado! Pega y comparte en tus redes sociales.');
+        }
+    };
+    container.appendChild(btn);
+}
+/* Botón compartir */
+.btn-compartir {
+    background: #1da1f2;
+    color: #fff;
+    font-size: 1.1em;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 18px;
+    transition: background 0.2s;
+    font-weight: bold;
+}
+.btn-compartir:hover {
+    background: #0d8ddb;
+}
 
     } catch (err) {
         console.error("Error en el proceso de voto:", err);
