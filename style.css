@@ -8,6 +8,7 @@ body::before {
     background: url('./background-voto-castigo.jpg') center center/cover no-repeat;
     opacity: 0.5;
     z-index: -1;
+    border: 3px solid red; /* Borde temporal para depuración */
 }
 /* Botón flotante de compartir */
 #compartir-float {
@@ -139,6 +140,7 @@ body {
     /* background-color: var(--bg-gray); */
     color: var(--text-dark);
     line-height: 1.6;
+    position: relative;
 }
  
  /* Eliminando el background-color sólido del body para que la imagen de fondo sea visible */
