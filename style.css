@@ -16,7 +16,7 @@
 }
 /* Mensaje destacado grande */
 .mensaje-destacado {
-    font-size: 4em;
+    font-size: 2.2em;
     font-weight: bold;
     color: #fff;
     background: linear-gradient(90deg, #b80000 60%, #ff5252 100%);
