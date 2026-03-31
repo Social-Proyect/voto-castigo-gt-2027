@@ -1,3 +1,8 @@
+/* Versión reducida solo para index.html */
+.mensaje-destacado-reducido {
+    font-size: 0.38em;
+    display: inline-block;
+}
 /* Botón compartir */
 .btn-compartir {
     background: #1da1f2;
