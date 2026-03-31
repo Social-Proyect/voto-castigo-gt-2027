@@ -1,3 +1,6 @@
+body {
+    position: relative;
+}
 body::before {
     content: "";
     position: fixed;
@@ -5,7 +8,7 @@ body::before {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url('./fondo-voto-castigo.jpg') center center/cover no-repeat;
+    background: url('background-voto-castigo.jpg') center center/cover no-repeat;
     opacity: 0.5;
     z-index: -1;
     /* Borde de depuración eliminado */
