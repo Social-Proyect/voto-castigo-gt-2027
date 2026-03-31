@@ -18,6 +18,13 @@ function compartirVotoCastigo() {
         alert('¡Texto para compartir copiado al portapapeles! Pega en tus redes sociales.');
     }
 }
+
+// --- COMPARTIR VOTO DE CASTIGO EN WHATSAPP ---
+function compartirVotoWhatsApp() {
+    const mensaje = encodeURIComponent('¡Ya emití mi #VotoDeCastigo! Súmate tú también en votocastigo.com 🇬🇹');
+    const url = `https://wa.me/?text=${mensaje}`;
+    window.open(url, '_blank');
+}
 // --- INICIALIZACIÓN DE SUPABASE ---
 window.SUPABASE_URL = 'https://fcevakmwpcujvaermkzo.supabase.co'; 
 window.SUPABASE_ANON_KEY = 'sb_publishable_WQGmuNXfqjdk7o9heE1hfA_N_-uJ6IS';
