@@ -11,7 +11,7 @@ body::before {
     background: url('background-voto-castigo.jpg') center center/cover no-repeat;
     opacity: 0.5;
     z-index: -1;
-    /* Borde de depuración eliminado */
+    background: url('fondo.jpg') center center/cover no-repeat;
 }
 /* Botón flotante de compartir */
 #compartir-float {
