@@ -221,12 +221,15 @@ body {
 }
 
 .search-container input {
-    width: 100%;
-    padding: 15px;
-     font-size: 1.6rem; /* Subtítulo más grande y notorio */
+    width: 350px;
+    max-width: 95%;
+    padding: 18px 22px;
+    font-size: 1.25rem;
     border: 2px solid #ddd;
-    font-size: 1rem;
+    border-radius: 12px;
     transition: border-color 0.3s;
+    box-sizing: border-box;
+    margin: 0 auto 18px auto;
 }
 
 .search-container input:focus {
