@@ -7,13 +7,11 @@ body::before {
     top: 0;
     left: 0;
     width: 100vw;
-        background: url('fondo.jpg') center center/cover no-repeat;
-                    border-radius: 12px;
-                    padding: 24px 16px;
-                        margin: 24px auto;
-                    max-width: 900px;
-                    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-                        float: none;
+    height: 100vh;
+    background: url('fondo.jpg') center center/cover no-repeat;
+    z-index: -1;
+    opacity: 1;
+}
 /* Botón flotante de compartir */
 #compartir-float {
         height: 100vh;
