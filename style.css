@@ -88,15 +88,16 @@ body::before {
 }
 
 .main-card {
-    width: 100%;
+    width: 70%;
     background: white;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
-    border-left: 8px solid var(--primary-blue);
-    padding: 32px 24px;
+    border-left: 6px solid var(--primary-blue);
+    padding: 22px 16px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.15s, box-shadow 0.15s, border-color 0.2s;
+    font-size: 0.7em;
 }
 .main-card:hover {
     transform: translateY(-6px) scale(1.03);

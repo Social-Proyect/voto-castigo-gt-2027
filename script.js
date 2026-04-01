@@ -20,7 +20,7 @@ function compartirVotoCastigo() {
     const shareData = {
         title: '¡Ya emití mi Voto de Castigo! 🇬🇹',
         text: '¡Ya avisé que no reelegiré a quienes subieron el combustible! Súmate al #VotoDeCastigo2027 en votocastigo.com',
-        url: window.location.origin
+        url: 'https://social-proyect.github.io/voto-castigo-gt-2027/'
     };
     if (navigator.share) {
         navigator.share(shareData)
