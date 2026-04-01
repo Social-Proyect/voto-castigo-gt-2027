@@ -167,8 +167,9 @@ body {
      font-size: 3.2rem; /* Título principal más grande y visible */
 .controls-section {
     padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 400px;
+    margin: 0 0 0 32px;
+    text-align: left;
 }
 
 .search-container input {
