@@ -16,18 +16,9 @@ body::before {
                         float: none;
 /* Botón flotante de compartir */
 #compartir-float {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 1000;
-    background: linear-gradient(90deg, #ff9800, #ff5722);
-    color: #fff;
-    border: none;
-    border-radius: 30px;
-    padding: 16px 28px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        height: 100vh;
+        z-index: -1;
+        opacity: 1;
     cursor: pointer;
     transition: box-shadow 0.2s, background 0.2s;
     outline: none;
