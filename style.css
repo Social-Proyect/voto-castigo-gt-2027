@@ -93,7 +93,7 @@ body::before {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
     border-left: 6px solid var(--primary-blue);
-    padding: 22px 16px;
+    padding: 10px 16px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.15s, box-shadow 0.15s, border-color 0.2s;
