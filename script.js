@@ -243,3 +243,17 @@ async function obtenerTotalVotos() {
     console.log('[VotoCastigo] Conteo IPs únicas:', total);
     document.getElementById('total-votos-count').innerText = total.toLocaleString('es-GT');
 }
+
+// --- FUNCIONES DE ORDENAMIENTO DE TARJETAS ---
+function renderPartidos(lista) {
+    lista.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
+    return lista;
+}
+function renderListado(lista) {
+    lista.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
+    return lista;
+}
+function renderDistritales(lista) {
+    lista.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
+    return lista;
+}
